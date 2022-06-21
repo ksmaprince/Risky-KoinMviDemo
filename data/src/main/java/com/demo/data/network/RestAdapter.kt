@@ -1,10 +1,10 @@
-package com.demo.data.datasource.remote
+package com.demo.data.network
 
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.demo.data.BuildConfig
-import com.demo.data.datasource.remote.interceptor.NoConnectionInterceptor
-import com.demo.data.datasource.remote.interceptor.ResponseInterceptor
+import com.demo.data.network.interceptor.NoConnectionInterceptor
+import com.demo.data.network.interceptor.ResponseInterceptor
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,9 +19,9 @@ class RestAdapter {
         private var retrofit: Retrofit? = null
 
         fun get(context: Context): Retrofit{
-            if (retrofit==null){
+            if (retrofit ==null){
                 synchronized(RestAdapter::class){
-                    if (retrofit==null){
+                    if (retrofit ==null){
                         val httpClient = OkHttpClient.Builder()
                         httpClient.connectTimeout(60, TimeUnit.SECONDS)
                         httpClient.readTimeout(60, TimeUnit.SECONDS)
@@ -39,6 +39,7 @@ class RestAdapter {
                     }
                 }
             }
+            return retrofit!!
         }
 
         private fun buildRetrofit(httpClient: OkHttpClient.Builder): Retrofit{
@@ -49,7 +50,6 @@ class RestAdapter {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(httpClient.build())
                 .build()
-
         }
     }
 }

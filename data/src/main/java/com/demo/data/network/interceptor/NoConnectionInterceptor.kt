@@ -1,4 +1,4 @@
-package com.demo.data.datasource.remote.interceptor
+package com.demo.data.network.interceptor
 
 import android.content.Context
 import android.net.ConnectivityManager

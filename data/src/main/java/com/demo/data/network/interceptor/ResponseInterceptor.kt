@@ -1,18 +1,17 @@
-package com.demo.data.datasource.remote.interceptor
+package com.demo.data.network.interceptor
 
 import android.util.Log
 import okhttp3.Interceptor
 import okhttp3.Response
 
 class ResponseInterceptor : Interceptor {
-
-    override fun intercept(chain: Interceptor.Chain?): Response {
-        val request = chain?.request()
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val request = chain.request()
         Log.i("REQUEST: ", request.toString())
-        val response = chain?.proceed(request)
-        Log.e("Bus", "intercept ${response?.code()}")
+        val response = chain.proceed(request)
+        Log.e("Bus", "intercept ${response.code}")
 
-        if (response?.code() == 401) {
+        if (response.code == 401) {
             HttpErrorEvent.emit(
                 HttpErrorEvent.Event(
                     "",
@@ -21,7 +20,7 @@ class ResponseInterceptor : Interceptor {
             )
         }
 
-        if ((response?.code() ?: 0) >= 500) {
+        if ((response.code ?: 0) >= 500) {
             HttpErrorEvent.emit(
                 HttpErrorEvent.Event(
                     "",
@@ -30,7 +29,7 @@ class ResponseInterceptor : Interceptor {
             )
         }
 
-        if (response?.code() == 503) {
+        if (response.code == 503) {
             HttpErrorEvent.emit(
                 HttpErrorEvent.Event(
                     "",
@@ -38,6 +37,6 @@ class ResponseInterceptor : Interceptor {
                 )
             )
         }
-        return response!!
+        return response
     }
 }
