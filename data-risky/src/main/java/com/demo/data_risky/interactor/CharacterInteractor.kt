@@ -5,8 +5,11 @@ import com.demo.data_risky.executor.PostExecutionThread
 import com.demo.data_risky.repository.RiskyRepository
 import com.demo.data_risky.viewstate.CharacterViewState
 import io.reactivex.Observable
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class CharacterInteractor(
+@Singleton
+class CharacterInteractor @Inject constructor(
     private val repository: RiskyRepository,
     private val mainThread: PostExecutionThread,
     private val backgroundThread: BackgroundThread

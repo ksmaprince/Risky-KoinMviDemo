@@ -44,93 +44,108 @@ public abstract class MviXFragment<V extends MvpView, P extends MviPresenter<V, 
         implements MvpView, MviDelegateCallback<V, P> {
 
     private boolean isRestoringViewState = false;
-    protected com.kbzbank.emponboard.feature.mvi.FragmentXMviDelegateImpl<V, P> mvpDelegate;
+    protected FragmentXMviDelegateImpl<V, P> mvpDelegate;
 
     @CallSuper
-    @Override public void onCreate(Bundle savedInstanceState) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getMvpDelegate().onCreate(savedInstanceState);
     }
 
     @CallSuper
-    @Override public void onDestroy() {
+    @Override
+    public void onDestroy() {
         super.onDestroy();
         getMvpDelegate().onDestroy();
     }
 
     @CallSuper
-    @Override public void onSaveInstanceState(Bundle outState) {
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         getMvpDelegate().onSaveInstanceState(outState);
     }
 
     @CallSuper
-    @Override public void onPause() {
+    @Override
+    public void onPause() {
         super.onPause();
         getMvpDelegate().onPause();
     }
 
     @CallSuper
-    @Override public void onResume() {
+    @Override
+    public void onResume() {
         super.onResume();
         getMvpDelegate().onResume();
     }
 
     @CallSuper
-    @Override public void onStart() {
+    @Override
+    public void onStart() {
         super.onStart();
         getMvpDelegate().onStart();
     }
 
     @CallSuper
-    @Override public void onStop() {
+    @Override
+    public void onStop() {
         super.onStop();
         getMvpDelegate().onStop();
     }
 
     @CallSuper
-    @Override public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getMvpDelegate().onViewCreated(view, savedInstanceState);
     }
 
     @CallSuper
-    @Override public void onDestroyView() {
+    @Override
+    public void onDestroyView() {
         super.onDestroyView();
         getMvpDelegate().onDestroyView();
     }
 
     @CallSuper
-    @Override public void onActivityCreated(Bundle savedInstanceState) {
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getMvpDelegate().onActivityCreated(savedInstanceState);
     }
 
     @CallSuper
-    @Override public void onAttach(Activity activity) {
+    @Override
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
         getMvpDelegate().onAttach(activity);
     }
 
-    @Override public void onAttach(Context context) {
+    @Override
+    public void onAttach(Context context) {
         super.onAttach(context);
         getMvpDelegate().onAttach(context);
     }
 
     @CallSuper
-    @Override public void onDetach() {
+    @Override
+    public void onDetach() {
         super.onDetach();
         getMvpDelegate().onDetach();
     }
 
     @CallSuper
-    @Override public void onAttachFragment(Fragment childFragment) {
+    @Override
+    public void onAttachFragment(Fragment childFragment) {
         super.onAttachFragment(childFragment);
         getMvpDelegate().onAttachFragment(childFragment);
     }
 
     @CallSuper
-    @Override public void onConfigurationChanged(Configuration newConfig) {
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         getMvpDelegate().onConfigurationChanged(newConfig);
     }
@@ -160,14 +175,15 @@ public abstract class MviXFragment<V extends MvpView, P extends MviPresenter<V, 
     @NonNull
     public FragmentMviDelegate<V, P> getMvpDelegate() {
         if (mvpDelegate == null) {
-            mvpDelegate = new com.kbzbank.emponboard.feature.mvi.FragmentXMviDelegateImpl<>(this, this);
+            mvpDelegate = new FragmentXMviDelegateImpl<>(this, this);
         }
 
         return mvpDelegate;
     }
 
     @NonNull
-    @Override public V getMvpView() {
+    @Override
+    public V getMvpView() {
         try {
             return (V) this;
         } catch (ClassCastException e) {
@@ -178,7 +194,8 @@ public abstract class MviXFragment<V extends MvpView, P extends MviPresenter<V, 
         }
     }
 
-    @Override public void setRestoringViewState(boolean restoringViewState) {
+    @Override
+    public void setRestoringViewState(boolean restoringViewState) {
         this.isRestoringViewState = restoringViewState;
     }
 

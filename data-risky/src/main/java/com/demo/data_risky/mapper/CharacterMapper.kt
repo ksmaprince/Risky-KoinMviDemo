@@ -2,8 +2,11 @@ package com.demo.data_risky.mapper
 
 import com.demo.data.database.entity.Character
 import com.demo.data_risky.model.response.Result
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class CharacterMapper {
+@Singleton
+class CharacterMapper @Inject constructor(){
 
     fun mapCharacter(results: List<Result>): List<Character> {
         val charList = arrayListOf<Character>()

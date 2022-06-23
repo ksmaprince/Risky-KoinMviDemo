@@ -3,8 +3,11 @@ package com.demo.data_risky.database
 import android.content.Context
 import androidx.room.Room
 import com.demo.data_risky.database.dao.CharacterDao
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RoomDbHelper(private val context: Context) {
+@Singleton
+class RoomDbHelper @Inject constructor(private val context: Context) {
     private val characterDao: CharacterDao
 
     init {

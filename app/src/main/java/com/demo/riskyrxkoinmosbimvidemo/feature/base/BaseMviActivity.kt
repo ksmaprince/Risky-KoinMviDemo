@@ -27,7 +27,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
-import org.koin.java.KoinJavaComponent.inject
 
 abstract class BaseMviActivity<VS, VIEW : MvpView, PRESENTER : MviPresenter<VIEW, VS>> :
     MviActivity<VIEW, PRESENTER>() {

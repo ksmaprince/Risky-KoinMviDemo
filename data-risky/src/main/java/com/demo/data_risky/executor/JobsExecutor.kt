@@ -1,8 +1,9 @@
 package com.demo.data_risky.executor
 
 import java.util.concurrent.*
+import javax.inject.Inject
 
-class JobsExecutor : Executor {
+class JobsExecutor @Inject constructor() : Executor {
     private val initialPoolSize = 3
     private val maxPoolSize = 5
 

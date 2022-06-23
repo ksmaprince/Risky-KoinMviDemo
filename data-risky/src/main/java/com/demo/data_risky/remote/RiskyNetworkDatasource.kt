@@ -7,8 +7,11 @@ import com.demo.data_risky.network.RestAdapter
 import com.demo.data_risky.network.RiskyService
 import com.google.gson.Gson
 import io.reactivex.Observable
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RiskyNetworkDatasource(context: Context) {
+@Singleton
+class RiskyNetworkDatasource @Inject constructor(context: Context) {
 
     private val riskyService = RestAdapter.get(context).create(RiskyService::class.java)
 

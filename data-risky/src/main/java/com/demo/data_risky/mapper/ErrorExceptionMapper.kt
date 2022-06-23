@@ -3,8 +3,11 @@ package com.demo.data_risky.mapper
 import com.demo.data_risky.exception.NetworkException
 import java.io.IOException
 import java.net.SocketTimeoutException
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ErrorExceptionMapper {
+@Singleton
+class ErrorExceptionMapper @Inject constructor(){
     fun mapException(throwable: Throwable): NetworkException {
         return when (throwable) {
             is IOException -> NetworkException.ApiException(throwable.message.toString())
