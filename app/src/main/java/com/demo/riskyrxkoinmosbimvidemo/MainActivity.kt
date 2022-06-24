@@ -5,6 +5,7 @@ import android.widget.Toast
 import com.demo.data_risky.interactor.CharacterInteractor
 import com.demo.data_risky.model.delegate.GetCharacterDelegate
 import com.demo.data_risky.viewstate.CharacterViewState
+import com.demo.riskyrxkoinmosbimvidemo.databinding.ActivityMainBinding
 import com.demo.riskyrxkoinmosbimvidemo.feature.base.BaseMviActivity
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.Observable
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : BaseMviActivity<CharacterViewState, MainView, MainPresenter>(), MainView {
     private val TAG = "MainActivity"
+    private lateinit var binding: ActivityMainBinding
 
     @Inject
     lateinit var mMainPresenter: MainPresenter
@@ -23,13 +25,18 @@ class MainActivity : BaseMviActivity<CharacterViewState, MainView, MainPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        binding.btnLoadData.setOnClickListener {
+
+            mGetCharacterRelay.onNext(CharacterInteractor.CharacterIntent(0))
+        }
 
     }
 
     override fun onStart() {
         super.onStart()
-        mGetCharacterRelay.onNext(CharacterInteractor.CharacterIntent(0))
     }
 
     override fun createPresenter(): MainPresenter {
